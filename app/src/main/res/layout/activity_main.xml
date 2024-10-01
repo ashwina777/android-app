@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a number"
+        android:textSize="30sp"
+        android:layout_margin="10dp"
+        android:id="@+id/e1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a number"
+        android:textSize="30sp"
+        android:layout_margin="10dp"
+        android:id="@+id/e2"
+        android:layout_below="@+id/e1" />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/e2"
+        android:layout_margin="30dp"
+        android:hint="result"
+        android:textColor="@color/black"
+        android:textSize="50sp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:layout_below="@id/tv"
+        android:layout_margin="30dp"
+        android:textSize="30dp"
+        android:id="@+id/b1" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/b1"
+        android:text="SUB"
+        android:textSize="30dp"
+        android:layout_margin="20dp"
+        android:id="@+id/b2" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/b2"
+        android:text="MUL"
+        android:textSize="30dp"
+        android:layout_margin="20dp"
+        android:id="@+id/b3" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/b4"
+        android:layout_below="@id/b3"
+        android:textSize="30dp"
+        android:text="DIV"
+        android:layout_margin="20dp" />
+</RelativeLayout>
