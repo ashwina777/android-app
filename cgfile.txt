@@ -1,0 +1,1226 @@
+
+QUESTION 1: Write a program to plot pixel.
+SOLUTION:
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+
+void main(){
+    int gdriver = DETECT, gmode;
+    initgraph(&gdriver, &gmode, "C:\\Turboc3\\BGI");
+    putpixel(100, 130, 2);
+    getch();
+    closegraph();
+}
+
+OUTPUT : 
+       
+QUESTION 2: Write a program to draw shapes such as circle, ellipse, rectangle.
+SOLUTION:
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+
+void main(){
+    int gdriver = DETECT, gmode;
+    initgraph(&gdriver, &gmode, "C:\\Turboc3\\BGI");
+
+    putpixel(100, 130, 2);
+    ellipse(140, 100, 0, 360, 130, 70);
+    circle(100, 130, 80);
+    rectangle(100, 150, 200, 300);
+
+    getch();
+    closegraph();
+}
+OUTPUT : 
+
+  
+QUESTION 3 : Write a program  to draw rainbow.
+SOLUTION:
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+
+void main(){
+    int x;
+    int y;
+    int r;
+    int gdriver = DETECT, gmode;
+    initgraph(&gdriver, &gmode, "C:\\Turboc3\\BGI"); 
+    x = getmaxx() / 2;
+    y = getmaxx() / 2;
+    r = 30;
+    for(r = 30; r < 200; r++){
+        delay(80);
+        setcolor(r / 10);
+        arc(x, y, 0, 180, r);
+    }
+    getch();
+    closegraph();
+}
+OUTPUT : 
+        
+QUESTION 4: Write a program to draw concentric circle.
+SOLUTION:
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+void main(){
+    int x, y, radius;
+    int gdriver = DETECT, gmode;
+    initgraph(&gdriver, &gmode, "C:\\Turboc3\\BGI");
+
+    for(radius = 10; radius <= 200; radius = radius + 10){
+        setcolor(radius / 10);
+        x = getmaxx() / 2;
+        y = getmaxy() / 2;
+        circle(x, y, radius);
+        delay(80);
+    }
+
+    getch();
+    closegraph();
+}
+OUTPUT : 
+     
+      
+QUESTION 5: Write a program to draw a vehicle.
+SOLUTION:
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+void main() 
+{
+    int i;
+    int gdriver = DETECT, gmode;
+    initgraph(&gdriver, &gmode, "C:\\Turboc3\\BGI");
+    for (i = 10; i <= 400; i += 10) {
+        cleardevice();  
+        setcolor(GREEN);
+        setfillstyle(SOLID_FILL, GREEN);
+        rectangle(50 + i, 100, 150 + i, 200);
+        setcolor(CYAN);
+        setfillstyle(SOLID_FILL, CYAN);
+        rectangle(150 + i, 180, 200 + i, 200);
+        floodfill(151 + i, 181, CYAN);
+        setcolor(RED);
+        setfillstyle(SOLID_FILL, RED);
+        circle(80 + i, 230, 30);
+        floodfill(81 + i, 231, RED);
+        setcolor(YELLOW);
+        setfillstyle(SOLID_FILL, YELLOW);
+        circle(180 + i, 230, 30);
+        floodfill(181 + i, 231, YELLOW);
+        delay(100);  
+    }
+
+getch();
+    closegraph();
+}
+
+OUTPUT : 
+
+          
+
+QUESTION 6 : Write a program  to implement predefined graphic functions.
+SOLUTION:
+#include<stdio.h> 
+#include<conio.h> 
+#include<graphics.h> 
+void main(){ 
+int gdriver=DETECT,gmode; 
+initgraph(&gdriver,&gmode,"C:\\Turboc3\\BGI"); 
+setcolor(WHITE); 
+putpixel(50,50,2); 
+line(100,50,300,400); 
+rectangle(150,100,80,100); 
+setfillstyle(SOLID_FILL,GREEN); 
+bar(150,100,200,320); 
+ellipse(200,200,0,360,40,50); 
+outtextxy(200,250,"HEY"); 
+getch(); 
+closegraph(); 
+}
+OUTPUT : 
+  
+QUESTION 7 : WAP to draw a line using DDA.
+SOLUTION:
+#include <graphics.h>
+#include <conio.h>
+#include <stdio.h>
+#include <math.h>
+
+void main() {
+    int gd = DETECT, gm;
+    float x1, y1, x2, y2, dx, dy, steps, x, y, x_inc, y_inc;
+    int i;
+    clrscr();
+    printf("Enter x1, y1: ");
+    scanf("%f%f", &x1, &y1);
+    printf("Enter x2, y2: ");
+    scanf("%f%f", &x2, &y2);
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
+
+    dx = x2 - x1;
+    dy = y2 - y1;
+
+    steps = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
+
+    x_inc = dx / steps;
+    y_inc = dy / steps;
+
+    x = x1;
+    y = y1;
+
+    for (i = 0; i <= steps; i++) {
+        putpixel((int)(x + 0.5), (int)(y + 0.5), WHITE);
+        x += x_inc;
+        y += y_inc;
+        delay(20);
+    }
+
+    getch();
+    closegraph();
+}
+
+OUTPUT : 
+          
+QUESTION 8 : WAP to draw a line Bresenham’s Line drawing algorithm.
+SOLUTION:
+#include <graphics.h>
+#include <conio.h>
+#include <stdio.h>
+#include <math.h>
+void main() {
+    int gd = DETECT, gm;
+    float x1, y1, x2, y2, dx, dy, steps, x, y, x_inc, y_inc;
+    int i;
+    clrscr();
+    printf("Enter x1, y1: ");
+    scanf("%f%f", &x1, &y1);
+    printf("Enter x2, y2: ");
+    scanf("%f%f", &x2, &y2);
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
+    dx = x2 - x1;
+    dy = y2 - y1;
+    steps = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
+    x_inc = dx / steps;
+    y_inc = dy / steps;
+    x = x1;
+    y = y1;
+    for (i = 0; i <= steps; i++) {
+        putpixel((int)(x + 0.5), (int)(y + 0.5), WHITE);
+        x += x_inc;
+        y += y_inc;
+        delay(20);
+    }
+
+    getch();
+    closegraph();
+}
+OUTPUT : 
+     
+
+
+
+QUESTION 9 : WAP to draw a line a draw a circle using Mid Point shortcut algorithm.
+SOLUTION:
+#include<stdio.h> 
+#include<conio.h> 
+#include<graphics.h> 
+void main(){ 
+int xc,yc,r,x,y,p; 
+int gdriver=DETECT,gmode; 
+printf("Enter the coordinates of circle"); 
+scanf("%d%d",&xc,&yc); 
+printf("Enter the radius of the circle"); 
+scanf("%d",&r); 
+initgraph( &gdriver,&gmode,"C:\\Turboc3\\BGI"); 
+p=1-r; 
+x=0; 
+y=r; 
+while(x<=y){ 
+putpixel(x+xc,y+yc,YELLOW); 
+putpixel(-x+xc,y+yc,YELLOW); 
+putpixel(x+xc,-y+yc,YELLOW); 
+putpixel(-x+xc,-y+yc,YELLOW); 
+putpixel(y+xc,x+yc,YELLOW); 
+putpixel(-y+xc,x+yc,YELLOW); 
+putpixel(y+xc,-x+yc,YELLOW); 
+putpixel(-y+xc,-x+yc,YELLOW); 
+if(p<=0){ 
+x=x+1; 
+p=p+2*x+1; 
+} 
+else{ 
+x=x+1;y=y-1; 
+p=p+2*x+1-2*y;} 
+} 
+getch(); 
+closegraph(); 
+}
+
+OUTPUT : 
+       
+
+
+QUESTION 10: Write a pogram to draw a line a draw a circle using Bresenham’s Circle drawing algorithm.
+SOLUTION:
+#include<stdio.h> 
+#include<conio.h> 
+#include<graphics.h> 
+void main(){ 
+int xc,yc,r,x,y,p; 
+int gdriver=DETECT,gmode; 
+printf("Enter the coordinates of circle"); 
+scanf("%d%d",&xc,&yc); 
+printf("Enter the radius of the circle"); 
+scanf("%d",&r); 
+initgraph( &gdriver,&gmode,"C:\\Turboc3\\BGI"); 
+p=3-2*r ; 
+x=0; 
+y=r; 
+while(x<=y){ 
+putpixel(x+xc,y+yc,YELLOW); 
+putpixel(-x+xc,y+yc,YELLOW); 
+putpixel(x+xc,-y+yc,YELLOW); 
+putpixel(-x+xc,-y+yc,YELLOW); 
+putpixel(y+xc,x+yc,YELLOW); 
+putpixel(-y+xc,x+yc,YELLOW); 
+putpixel(y+xc,-x+yc,YELLOW); 
+putpixel(-y+xc,-x+yc,YELLOW); 
+if(p<=0){ 
+x=x+1; 
+p=p+4*x+1; 
+} 
+else{ 
+x=x+1;y=y-1; 
+p=p+4*(x-y)+10;} 
+} 
+getch(); 
+closegraph(); 
+}
+
+OUTPUT :
+  
+
+
+QUESTION 11: Write a program to draw a smiley.
+SOLUTION:
+#include<stdio.h> 
+#include<conio.h> 
+#include<graphics.h> 
+void main(){ 
+int gdriver=DETECT,gmode; 
+initgraph(&gdriver,&gmode,"C:\\Turboc3\\BGI") ; 
+circle(100,100,20); 
+circle(200,100,20); 
+arc(150,150,180,360,60); 
+getch(); 
+closegraph(); 
+} 
+OUTPUT : 
+ 
+
+
+
+
+QUESTION 12: Write a program to draw a hut.
+SOLUTION:
+#include<stdio.h> 
+#include <graphics.h> 
+#include <conio.h> 
+int main()
+ { 
+int gd = DETECT, gm; 
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI"); 
+rectangle(150, 200, 300, 350); 
+setfillstyle(SOLID_FILL, BROWN); 
+floodfill(151, 201, WHITE); 
+rectangle(200, 270, 250, 350); 
+setfillstyle(SOLID_FILL, DARKGRAY); 
+floodfill(201, 271, WHITE); 
+line(150, 200, 225, 130); 
+line(225, 130, 300, 200); 
+line(150, 200, 300, 200); 
+getch(); 
+closegraph(); 
+return 0; } 
+OUTPUT : 
+
+      Q9.Write a program to draw a line using equation y=mx+c. 
+#include<graphics.h> 
+#include<conio.h> 
+#include<math.h> 
+#include<dos.h> 
+#include<stdio.h> 
+int my_round(float x) 
+{ 
+return (int)(x + 0.5); 
+} 
+void draw_line(int x1, int y1, int x2, int y2) 
+{ 
+int dx, dy, steps; float x_inc, y_inc, x, y; dx = x2 - x1; dy = y2 - y1; 
+steps = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy); x_inc = (float)dx / steps; y_inc = (float)dy / steps; x = x1; y = y1; 
+for (int i = 0; i <= steps; i++) 
+{ 
+putpixel(my_round(x), my_round(y), CYAN); 
+x += x_inc; y += y_inc; delay(10); 
+} 
+} 
+int main() 
+{ 
+int gd = DETECT, gm; int x1, y1, x2, y2; printf("\nEnter the two endpoints of the line:\n"); 
+printf("x1 = "); scanf("%d", &x1); printf("y1 = "); scanf("%d", &y1); printf("x2 = "); scanf("%d", &x2); printf("y2 = "); scanf("%d", &y2); initgraph(&gd, &gm, "C:\\Turboc3\\BGI"); setbkcolor(WHITE); 
+cleardevice(); 
+setcolor(BLACK); 
+draw_line(x1, y1, x2,y2); 
+getch(); closegraph(); 
+return 0; 
+} 
+ 
+ 
+ 
+ 
+OUTPUT 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q8.Write a program to draw a Chess Board. 
+#include<graphics.h> #include<conio.h> 
+void draw_chessboard() 
+{ 
+int x, y, size = 50; 
+int color; 
+for (int row = 0; row < 8; row++) 
+{ 
+for (int col = 0; col < 8; col++) 
+{ 
+x = col * size; y = row * size; 
+rectangle(x, y, x + size, y + size); 
+color = (row + col) % 2 == 0 ? BLACK : WHITE; if (color == WHITE) 
+{ 
+setfillstyle(SOLID_FILL, WHITE); 
+floodfill(x + 1, y + 1, BLACK); 
+} 
+} 
+} 
+} 
+int main() 
+{ 
+int gd = DETECT, gm; 
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI"); setbkcolor(WHITE); 
+cleardevice(); 
+setcolor(BLACK); 
+draw_chessboard(); 
+getch(); 
+closegraph(); 
+return 0; 
+} 
+ 
+
+
+
+
+
+
+
+
+
+OUTPUT 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+Q10.Write a program to draw a line using DDA. 
+#include<graphics.h> 
+#include<conio.h> 
+#include<math.h> 
+ 
+void DDA(int x1, int y1, int x2, int y2) { 
+int dx = x2 - x1;                int dy = y2 - y1; 
+int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);   
+ 
+float Xinc = (float)dx / steps;     
+float Yinc = (float)dy / steps; 
+ 
+float x = x1, y = y1; 
+     
+for (int i = 0; i <= steps; i++) { 
+        putpixel(round(x), round(y), BLACK);                                      x += Xinc;  y += Yinc;  
+        delay(10);  
+    } 
+} 
+ 
+int main() {     
+int gd = DETECT, gm; 
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");  
+    setbkcolor(WHITE);  
+    cleardevice();  
+ 
+int x1, y1, x2, y2; 
+printf("Enter the starting coordinates (x1, y1): ");        scanf("%d %d", &x1, &y1);     printf("Enter the ending coordinates (x2, y2): ");     scanf("%d %d", &x2, &y2); 
+ 
+DDA(x1, y1, x2, y2);  
+ 
+getch();     
+closegraph();  
+return 0; 
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+OUTPUT 
+ 
+ 
+  
+ 
+11.Write a program to draw a Circle using equation x2+y2=r2 
+#include <graphics.h> 
+#include <conio.h> 
+#include <math.h> 
+ 
+void drawCircle(int xc, int yc, int r) {     int x, y; 
+     
+for (x = -r; x <= r; x++) { 
+       y = round(sqrt(r * r - x * x)); 
+ 
+putpixel(xc + x, yc + y, BLACK);         putpixel(xc + x, yc - y, BLACK);         putpixel(xc - x, yc + y, BLACK); 
+putpixel(xc - x, yc - y, BLACK); 
+    } 
+} 
+ 
+int main() {     
+int gd = DETECT, gm; 
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    setbkcolor(WHITE);  
+    cleardevice();  
+ 
+int xc, yc, r; 
+printf("Enter the center coordinates (xc, yc): ");     scanf("%d %d", &xc, &yc);     printf("Enter the radius of the circle: ");     scanf("%d", &r); 
+ 
+drawCircle(xc, yc, r);  
+ 
+getch();      
+closegraph();  
+return 0; 
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+OUTPUT 
+ 
+ 
+  
+Q12.Write a program to draw a Circle using Mid-point Circle generation Algorithm.   
+#include <graphics.h>   
+#include <conio.h>   
+#include <dos.h> #include  
+<stdio.h>  void drawCirclePoints(int xc, int yc, int x, int y, 
+int color) {      
+putpixel(xc + x, yc + y, color);     putpixel(xc - x, yc + y, 
+color);     putpixel(xc + x, yc - y, color);     putpixel(xc - x, yc - y, color);     putpixel(xc + y, yc + x, color);     putpixel(xc - 
+y, yc + x, color);     putpixel(xc + y, yc - x, color);   
+    putpixel(xc - y, yc - x, color);   
+}   
+void midPointCircle(int xc, int yc, int r, int color) {      
+int x = 0;     int y = r;     int p = 1 - r;   
+    drawCirclePoints(xc, yc, x, y, color);   
+    while (x < y) {          
+x++;         if (p < 0) {             
+p += 2 * x + 1;          
+} else {   
+            y--;   
+            p += 2 * (x - y) + 1;   
+        }   
+        drawCirclePoints(xc, yc, x, y, color);   
+        delay(10);     
+    }   
+}   
+int main() {     int gd = 
+DETECT, gm;   
+    int xc, yc, r;      
+    printf("Enter center coordinates of circle (x y): ");   
+    scanf("%d  %d",  &xc,  &yc);     
+printf("Enter radius of circle: ");     scanf("%d", 
+&r);   
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");     
+   
+    setbkcolor(WHITE);   
+    cleardevice();   
+   
+       
+setcolor(RED);   
+    midPointCircle(xc, yc, r, RED);   
+    getch();      
+closegraph();   
+
+return 0;   
+}     
+OUTPUT   
+
+  
+Q13 Write a program to draw concentric circles using any circle generation algorithm.   
+#include <graphics.h>   
+#include <conio.h>   
+#include <stdio.h>   
+   
+void drawCircle(int xc, int yc, int r) {   
+    int x = 0;     int 
+y = r;     int p = 1 - 
+r;     while (x <= 
+y) {   
+        putpixel(xc + x, yc + y, BLACK);          
+putpixel(xc - x, yc + y, BLACK);         
+putpixel(xc + x, yc - y, BLACK);         
+putpixel(xc - x, yc - y, BLACK);         putpixel(xc 
++ y, yc + x, BLACK);         putpixel(xc - y, yc + x, 
+BLACK);         putpixel(xc + y, yc - x, BLACK);          
+putpixel(xc - y, yc - x, BLACK);         x++;   
+          if (p < 0) 
+{   
+            p = p + 2 * x + 1;   
+        } else {   
+            y--;   
+            p = p + 2 * (x - y) + 1;   
+        }   
+    }   
+}   
+   
+int main() {     int gd =  
+DETECT, gm;     int xc = 300, 
+yc = 250;       int radius, gap, 
+numCircles;   
+   
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");   
+   
+    setbkcolor(WHITE);   
+    cleardevice();    
+   
+    setcolor(BLACK);   
+   
+    printf("Enter the number of concentric circles: ");      
+scanf("%d", &numCircles);   
+   
+       
+
+printf("Enter the gap between the circles: ");      
+scanf("%d", &gap);   
+for (int i = 1; i <= numCircles; i++) {   
+radius = i * gap;   
+drawCircle(xc, yc, radius);   
+}   
+getch();      
+closegraph();   
+return 0;   
+}   
+OUTPUT   
+
+Q14 Write a program to draw an ellipse using equation x2/a2+y2/b2=1.   
+#include <graphics.h>   
+#include <math.h> 
+#include <dos.h> int  
+main() {     int gd = DETECT, 
+gm;   
+f
+ loat x, y, a = 100, b = 50;      
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI");   
+setbkcolor(WHITE);        
+cleardevice();            
+setcolor(BLACK);          
+for (x = -a; x <= a; x += 0.5) {         
+y =  
+b * sqrt(1 - (x * x) / (a * a));         
+putpixel(250 
++ x, 250 - y, BLACK);   
+putpixel(250 + x, 250 + y, BLACK);   
+}   
+getch();      
+closegraph();   
+return 0;   
+}   
+OUTPUT   
+
+  
+Q15 Write a program to implement viewport displaying line clipping by using Cohn Sutherland line          
+clipping algorithm.   
+#include <graphics.h>   
+#include <conio.h>   
+#define LEFT 1   
+#define RIGHT 2   
+#define BOTTOM 4 #define TOP 8  int xmin = 100, 
+ymin = 100, xmax = 300, ymax = 300;  
+int getCode(int x, int y) {     int code = 0;   
+    if (x < xmin) code |= LEFT;     if  
+(x > xmax) code |= RIGHT;     if (y  
+< ymin) code |= BOTTOM;     if 
+(y > ymax) code |= TOP;     
+return code;   
+}   
+void cohenSutherland(int x1, int y1, int x2, int y2) {      
+int code1 = getCode(x1, y1);     int code2 = 
+getCode(x2, y2);   
+    int accept = 0;      
+while (1) {   
+        if ((code1 == 0) && (code2 == 0)) {   
+            accept = 1;   
+            break;   
+        } else if (code1 & code2) {              
+break;         }  
+else {             int  
+code_out;   
+            int x, y;             if 
+(code1 != 0)                 
+code_out = code1;             
+else   
+                code_out = code2;             
+if (code_out & TOP) {   
+x = x1 + (x2 - x1) * (ymax - y1) / (y2 - y1);                  
+y = ymax;   
+            } else if (code_out & BOTTOM) {                 
+x = x1 + (x2 - x1) * (ymin - y1) / (y2 - y1);                 
+y = ymin;   
+            } else if (code_out & RIGHT) {   
+y  = y1 + (y2 - y1) * (xmax - x1) / (x2 - x1);                 
+x = xmax;   
+            } else {   
+                   
+ 
+  
+y = y1 + (y2 - y1) * (xmin - x1) / (x2 - x1);                  
+x = xmin;   
+            }   
+            if (code_out == code1) {   
+                x1 = x;   
+                y1 = y;   
+                code1 = getCode(x1, y1);   
+            } else {                 
+x2 = x;   
+                y2 = y;   
+                code2 = getCode(x2, y2);   
+            }   
+        }   
+    }      if 
+(accept)          
+line(x1, y1, x2, y2);   
+}   
+int main() {     int gd = DETECT, gm;     initgraph(&gd, 
+&gm, "C:\\Turboc3\\BGI");     setbkcolor(WHITE);      
+cleardevice();             
+setcolor(BLACK);        
+    rectangle(xmin, ymin, xmax, ymax);                   
+cohenSutherland(50, 50, 350, 350);                
+    getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+   
+OUTPUT   
+   
+   
+   
+   
+   
+      
+   
+   
+   
+     
+   
+ 
+   
+
+Q16 Write a program to implement Boundary-fill algorithm   
+#include <graphics.h> #include  
+<conio.h>  void boundaryFill(int x, int y, int fill_color, int 
+boundary_color) { int  
+current = getpixel(x, y);   
+if (current != boundary_color && current != fill_color) {  
+putpixel(x, y, fill_color);   
+boundaryFill(x + 1, y, fill_color, boundary_color); 
+boundaryFill(x - 1, y, fill_color, boundary_color); 
+boundaryFill(x, y + 1, fill_color, boundary_color); 
+boundaryFill(x, y - 1, fill_color, boundary_color);   
+}   
+}   
+int main() { int gd = DETECT, gm;  
+initgraph(&gd, &gm, 
+"C:\\Turboc3\\BGI");  
+setbkcolor(WHITE); cleardevice(); 
+setcolor(BLACK);   
+rectangle(150, 100, 300, 200);  
+boundaryFill(200, 150, GREEN, BLACK);  
+getch(); closegraph();   
+return 0;   
+}   
+OUTPUT   
+
+
+Q17 Write a program to implement Scan-line algorithm   
+#include <graphics.h>   
+#include <stdio.h> #include  
+<dos.h>   
+void scanFill(int x[], int y[], int n) { int 
+i, j, k, dy, dx;   
+float slope[20];for (i = 0; i < n; i++) {      
+dx = x[(i + 1) % n] - x[i];     dy = y[(i + 
+1) % n] - y[i];     if (dy == 0)         
+slope[i] = 1.0;     else if (dx == 0)         
+slope[i] = 0.0;     else   
+        slope[i] = (float)dx / dy;   
+}   
+for (int scan = 0; scan < getmaxy(); scan++) {   
+    int inter[20], count = 0;      
+for (i = 0; i < n; i++) {   
+        if ((y[i] <= scan && y[(i + 1) % n] > scan) ||             
+(y[(i + 1) % n] <= scan && y[i] > scan)) {              
+inter[count++] = (int)(x[i] + (scan - y[i]) * slope[i]);   
+        }   
+    }   
+    for (i = 0; i < count - 1; i++) {         
+for (j = 0; j < count - i - 1; j++) {             
+if (inter[j] > inter[j + 1]) {                 
+int temp = inter[j];                 inter[j]  
+= inter[j + 1];                  
+inter[j + 1] = temp;   
+            }   
+        }   
+    }   
+    for (i = 0; i < count; i += 2) {         
+line(inter[i], scan, inter[i + 1], scan);   
+}}} int main() { int gd = 
+DETECT, gm;   
+int x[] = {200, 300, 250}; // triangle 
+coordinates int y[] = {200, 200, 100}; 
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI") 
+setbkcolor(WHITE); cleardevice(); 
+setcolor(BLUE);  line(x[0], y[0], x[1], y[1]); 
+line(x[1], y[1], x[2], y[2]); line(x[2], y[2], x[0], 
+y[0]);   
+setcolor(RED);  
+
+scanFill(x, y, 3); 
+getch(); closegraph();  
+return 0;   
+}   
+OUTPUT   
+ 
+Q18 Write a program to implement Flood Fill algorithm    
+#include <graphics.h>   
+#include <conio.h> #include  
+<dos.h>   
+void floodFill(int x, int y, int fill_color, int old_color) {     
+if (getpixel(x, y) == old_color) {         putpixel(x, y, 
+fill_color);         floodFill(x + 1, y, fill_color, 
+old_color);         floodFill(x - 1, y, fill_color, 
+old_color);         floodFill(x, y + 1, fill_color,  
+old_color);   
+        floodFill(x, y - 1, fill_color, old_color);   
+    }   
+}   
+int main() {     int gd = DETECT, gm;     
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI");     
+setbkcolor(WHITE);     cleardevice();      
+setcolor(BLACK);      rectangle(100, 100, 200, 
+200);     delay(1000);     int x = 150, y = 150;     
+int fill_color =  LIGHTBLUE;     int old_color = 
+WHITE;     floodFill(x, y, fill_color, old_color);     
+getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+  
+OUTPUT   
+   
+   
+   
+   
+ 
+ 
+  
+
+  
+Q19 Write a program to draw a hut with filled colors   
+#include <graphics.h>   
+#include <conio.h>   
+   
+int main() {     int gd = 
+DETECT, gm;   
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");   
+   
+    setbkcolor(WHITE);   
+    cleardevice();   
+   
+    setcolor(BLACK);     
+setfillstyle(SOLID_FILL,  LIGHTBLUE);     
+rectangle(150, 200, 350, 350);    
+    floodfill(151, 201, BLACK);        
+     
+    setcolor(BLACK);     
+setfillstyle(SOLID_FILL,  RED);     
+line(150,  200,  250,  100);       
+line(250,  100,  350,  200);       
+line(150, 200, 350, 200);     
+    floodfill(250, 150, BLACK);    
+   
+    setcolor(BLACK);     
+setfillstyle(SOLID_FILL, BROWN);     
+rectangle(230, 270, 270, 350);   
+    floodfill(231, 271, BLACK);   
+   
+    setcolor(BLACK);     
+setfillstyle(SOLID_FILL,  CYAN);     
+rectangle(170, 230, 200, 260);      
+floodfill(171, 231, BLACK);      
+getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+   
+   
+   
+ 
+OUTPUT   
+
+  
+Q20 Write a program to implement point clipping.   
+#include <graphics.h>   
+#include <conio.h>   
+#include <stdio.h>   
+   
+int main() {     int gd = DETECT,  
+gm;     int x_min = 100, y_min =  
+100;      int x_max = 300, y_max 
+= 200;   
+    int x, y;   
+   
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");   
+   
+    setbkcolor(WHITE);   
+    cleardevice();     
+   
+    setcolor(BLACK);   
+    rectangle(x_min, y_min, x_max, y_max);   
+   
+    printf("Enter point coordinates (x y): ");      
+scanf("%d %d", &x, &y);   
+   
+    if (x >= x_min && x <= x_max && y >= y_min && y <= y_max) {          
+setcolor(GREEN);   
+        outtextxy(50, 250, "Point is inside the clipping window.");          
+putpixel(x, y, GREEN);   
+    } else {          
+setcolor(RED);   
+        outtextxy(50, 250, "Point is outside the clipping window (clipped).");          
+putpixel(x, y, BLACK);    
+    }   
+   
+    getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+   
+ 
+OUTPUT   
+   
+   
+   
+   
+   
+ 
+
+  
+Q21 Write a program to implement translation.   
+#include <graphics.h>   
+#include <conio.h>   
+#include <stdio.h>   
+   
+int main() {     int gd = 
+DETECT, gm;     int x1, y1, 
+x2, y2;   
+    int tx, ty;   
+   
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");     
+setbkcolor(WHITE);     cleardevice();      
+setcolor(BLACK);   
+   
+    printf("Enter starting point of line (x1 y1): ");     
+scanf("%d %d", &x1, &y1);     printf("Enter ending 
+point of line (x2 y2): ");     scanf("%d  
+%d", &x2, &y2);   
+   
+    printf("Enter translation factors (tx ty): ");   
+    scanf("%d %d", &tx, &ty);   
+   
+    setcolor(BLUE);     
+line(x1, y1, x2, y2);   
+    outtextxy(x1, y1 - 10, "Original");   
+   
+    int new_x1 = x1 + tx;     
+int new_y1 = y1 + ty;     int 
+new_x2 = x2 + tx;   
+    int new_y2 = y2 + ty;   
+   
+    setcolor(GREEN);     line(new_x1, 
+new_y1, new_x2, new_y2);   
+    outtextxy(new_x1, new_y1 - 10, "Translated");   
+   
+    getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+
+OUTPUT   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+  
+Q22 Write a program to implement rotation   
+#include <graphics.h>   
+#include <conio.h>   
+#include <stdio.h>   
+#include <math.h>   
+   
+#define PI 3.14159   
+   
+int main() {     int gd = 
+DETECT, gm;     int x1, 
+y1, x2, y2;     float angle, 
+rad;   
+    int xr1, yr1, xr2, yr2;   
+   
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");     
+setbkcolor(WHITE);     cleardevice();      
+setcolor(BLACK);   
+    printf("Enter starting point of line (x1 y1): ");     
+scanf("%d %d", &x1, &y1);     printf("Enter 
+ending point of line (x2 y2): ");   
+    scanf("%d %d", &x2, &y2);   
+   
+    printf("Enter angle of rotation (in degrees): ");      
+scanf("%f", &angle);   
+   
+    rad = angle * PI / 180;     
+setcolor(BLUE);     line(x1, y1, x2, 
+y2);     outtextxy(x1, y1 - 10, 
+"Original");     xr1 = x1 * cos(rad) - 
+y1 * sin(rad);      yr1 = x1 * sin(rad) 
++ y1 * cos(rad);   
+   
+    xr2 = x2 * cos(rad) - y2 * sin(rad);   
+    yr2 = x2 * sin(rad) + y2 * cos(rad);   
+       
+    setcolor(GREEN);     
+line(xr1, yr1, xr2, yr2);   
+    outtextxy(xr1, yr1 - 10, "Rotated");   
+   
+    getch();      
+closegraph();      
+return 0;   
+}   
+ 
+OUTPUT   
+
+Q23 Write a program to implement Scaling of given object   
+#include <graphics.h>   
+#include <conio.h>   
+#include <stdio.h>   
+   
+int main() {      int gd = 
+DETECT, gm;   
+    int i, n;   
+    float sx, sy;   
+   
+    int x[10], y[10];      
+    float xf[10], yf[10];        
+   
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");   
+    setbkcolor(WHITE);            
+    cleardevice();              
+    setcolor(BLUE);    
+   
+    printf("Enter number of vertices of the object: ");      
+scanf("%d", &n);   
+   
+    printf("Enter coordinates (x y) of the object:\n");   
+    for (i = 0; i < n; i++) {         
+printf("Vertex %d: ", i + 1);   
+        scanf("%d%d", &x[i], &y[i]);   
+        xf[i] = x[i];          
+yf[i] = y[i];   
+    }   
+   
+    printf("Enter scaling factors Sx and Sy: ");      
+scanf("%f%f", &sx, &sy);   
+   
+    for (i = 0; i < n - 1; i++)          
+line(x[i], y[i], x[i + 1], y[i + 1]);   
+    line(x[n - 1], y[n - 1], x[0], y[0]);    
+   
+    for (i = 0; i < n; i++) {          
+xf[i] = xf[i] * sx;   
+        yf[i] = yf[i] * sy;   
+    }   
+   
+    setcolor(GREEN);   
+    for (i = 0; i < n - 1; i++)         line((int)xf[i], (int)yf[i],  
+
+(int)xf[i + 1], (int)yf[i + 1]);   line((int)xf[n - 1], (int)yf[n - 
+1], (int)xf[0], (int)yf[0]);   
+getch();      
+closegraph();   
+return 0;   
+}   
+OUTPUT   
+
+  
+Q24 Write a c program to move a car   
+#include <graphics.h>   
+#include <dos.h>        
+#include <conio.h>       
+   
+void drawCar(int x, int y) {   
+       
+    rectangle(x, y, x + 100, y + 40);                
+rectangle(x + 20, y - 20, x + 80, y);            
+circle(x + 25, y + 45, 10);                     circle(x  
++ 75, y + 45, 10);                   
+}   
+   
+int main() {     int gd = DETECT, gm, x;     
+initgraph(&gd, &gm, "C:\\Turboc3\\BGI");     
+setbkcolor(WHITE);         
+ cleardevice();        
+setcolor(BLACK);   
+    for (x = 0; x < getmaxx() - 100; x += 5) {          
+cleardevice();                       drawCar(x,  
+200);                     delay(50);                     
+    }   
+    getch();      
+closegraph();   
+    return 0;   
+}   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+  
+OUTPUT   
+   
+   
+   
+   
+   
+   
+   
+          
+
+
